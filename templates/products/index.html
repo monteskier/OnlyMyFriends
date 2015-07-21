@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h1>Els nostres productes:</h1>
+
+{% for category in categories %}
+    <ul>
+    <h1>{{category.name}}</h1>
+    {% for product in products %}
+        {% if product.category.name == category.name %}
+        {% load staticfiles %}
+          <li>{{ product.name }} {% if product.img %} <img src='{{ product.img.url }}' width="150px" height="150px" alt="imatge del producte"/> {% endif %} </li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+{% endfor %}
+</body>
+</html>
