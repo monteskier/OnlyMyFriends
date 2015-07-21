@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils import timezone
-from models import Product, Category, Stock, Customers, Sales, History_Status
+from models import Product, Category, Stock, Customers, Sales, History_Status, SlideShow, Video
 
 class ProductAdmin(admin.ModelAdmin):
 
@@ -15,6 +15,9 @@ admin.site.register(Stock)
 admin.site.register(Customers)
 admin.site.register(Sales)
 admin.site.register(History_Status)
+admin.site.register(SlideShow)
+admin.site.register(Video)
+
 
 
 # Register your models here.

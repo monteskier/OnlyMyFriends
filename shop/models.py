@@ -6,8 +6,16 @@ from os.path import join
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Create your models here.
+
+class Video(models.Model):
+    title = models.CharField(max_length=100)
+    url = models.CharField(max_length=500)
+    widht = models.CharField(max_length=500, default="400px")
+    heigth = models.CharField(max_length=500, default="300px")
+    
 class Category(models.Model):
     category_father = models.ForeignKey('self', null=True, blank=True, default = None)
+    video = models.ForeignKey(Video, null=True)
     name = models.CharField(max_length=150)
     img = models.ImageField(upload_to='/uploads/images/categories/<category_id>/', blank=True, null=True)
     def __unicode__(self):
@@ -16,12 +24,14 @@ class Category(models.Model):
 class Product(models.Model):
     STATUS_CHOICES = [('active', 'active'), ('inactive', 'inactive')]
     OPTIONS_PUB = [('published', 'published'), ('no published', 'no published')]
+    SIZE_OPTIONS = [('XS','XS'),('S','S'),('M','M'),('L','L'),('XL','XL'),('XXL','XXL')]
     featured = models.BooleanField(default=True)
     published = models.CharField(max_length=50, choices = OPTIONS_PUB, default='published')
     name = models.CharField(max_length=200)
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
     color = models.CharField(max_length=50)
+    size = models.CharField(max_length = 10, choices = SIZE_OPTIONS) 
     status = models.CharField(max_length=50, choices=STATUS_CHOICES)
     category = models.ForeignKey(Category)
     img = models.ImageField(upload_to='images/products/', blank=True, null=True)
@@ -32,6 +42,12 @@ class Product(models.Model):
 class Stock(models.Model):
     quantity = models.IntegerField(max_length=5)
     product = models.ForeignKey(Product)
+    
+class SlideShow(models.Model):
+    category = models.ForeignKey(Category, null=True)
+    product = models.ForeignKey(Product, null=True)
+    title = models.CharField(max_length=100)
+    description = models.TextField(null=True)
 
 class Customers(models.Model):
     user = models.OneToOneField(User, primary_key=True, related_name='profile')
