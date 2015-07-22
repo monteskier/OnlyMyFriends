@@ -3,10 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <title>OnlyMyFriends</title>
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static "css/layout.css" %}">
 </head>
-<header></header>
+<header>
+	{% block header %}
+		<div id="navlist">
+		<ul>
+		{% for category in categories %}
+			<li> <a href="shop/category/{{category.pk}}">{{category.name}}</a></li>
+		{% endfor %}
+		</ul>
+	</div>
+	{% endblock %}
+</header>
 <body>
-Content of the document......
+	<div id="main">	
+		{% block body %}
+		{% endblock %}
+	</div>
 </body>
-
+<footer>
+	{% block footer%}
+		peu de pagina
+	{% endblock %}
+</footer>
 </html>

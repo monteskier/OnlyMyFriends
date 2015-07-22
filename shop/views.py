@@ -9,7 +9,6 @@ def index(request):
     try:
         products = Product.objects.all().filter(featured=True, published='published')
         category = Category.objects.all()
-
     except:
         raise Http404('Cap producte Disponible')
 
@@ -17,3 +16,12 @@ def index(request):
 
 def detailProduct(request, product_id):
     return HttpResponse("Esta intentat veure les propietats del objecte %s" % product_id)
+
+def productsOfCategory(request, category_id):
+    try:
+        products = Product.objects.all().filter(published='published', category=category_id)
+        category = Category.objects.get(pk=category_id)
+    except:
+        raise Http404('Cap producte publicat dintre aquesta Categoria')
+    
+    return render(request,'productsOfCategory.html',{'products':products, 'category':category})

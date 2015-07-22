@@ -15,7 +15,7 @@ class Video(models.Model):
     
 class Category(models.Model):
     category_father = models.ForeignKey('self', null=True, blank=True, default = None)
-    video = models.ForeignKey(Video, null=True)
+    video = models.ForeignKey(Video, null=True, blank=True, default = None)
     name = models.CharField(max_length=150)
     img = models.ImageField(upload_to='/uploads/images/categories/<category_id>/', blank=True, null=True)
     def __unicode__(self):
