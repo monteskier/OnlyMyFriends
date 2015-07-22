@@ -20,8 +20,9 @@ def detailProduct(request, product_id):
 def productsOfCategory(request, category_id):
     try:
         products = Product.objects.all().filter(published='published', category=category_id)
-        category = Category.objects.get(pk=category_id)
+        categorySelect = Category.objects.get(pk=category_id)
+        categoryAll = Category.objects.all()
     except:
         raise Http404('Cap producte publicat dintre aquesta Categoria')
     
-    return render(request,'productsOfCategory.html',{'products':products, 'category':category})
+    return render(request,'products/productsOfCategory.html',{'products':products, 'categorySelect':categorySelect, 'categories':categoryAll})

@@ -1,5 +1,9 @@
-<ul>Llista de productes de la Categoria: {{category.name}}
-{% for product in products %}
-	<li>{{products.name}}</li>
+{% extends "layout.html" %}
+{% block body %}
+    <ul>Llista de productes de la Categoria: {{categorySelect.name}}
+    {% for product in products %}
+        <li>{{product.name}}</li>
+    {% endfor %}
+{% endblock %}
 </ul>
 	

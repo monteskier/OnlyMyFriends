@@ -8,10 +8,11 @@
 </head>
 <header>
 	{% block header %}
+        <div id="title"><a href="/">OnlyMyFriends</a></div>
 		<div id="navlist">
 		<ul>
 		{% for category in categories %}
-			<li> <a href="shop/category/{{category.pk}}">{{category.name}}</a></li>
+			<li> <a href="/shop/category/{{category.pk}}">{{category.name}}</a></li>
 		{% endfor %}
 		</ul>
 	</div>
