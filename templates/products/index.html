@@ -1,17 +1,22 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  
+{% load staticfiles %}
 	{% for category in categories %}
-	    <ul>
-	    <h1>{{category.name}}</h1>
-	    {% for product in products %}
-	        {% if product.category.name == category.name %}
-	        {% load staticfiles %}
-	          <li>{{ product.name }} {% if product.img %} <img src='{{ product.img.url }}' width="150px" height="150px" alt="imatge del producte"/> {% endif %} </li>
-	        {% endif %}
-	    {% endfor %}
-	    </ul>
+         <h1 class="">{{category.name}}</h1>
+         <section id="containerCol">
+         {% for product in products %}
+
+                {% if product.category.name == category.name %}
+
+                    <article class="products"><p>{{ product.name }}</p>{% if product.img %} <img src='{{ product.img.url }}' width="150px" height="150px" alt="imatge del producte"/> {% endif %}
+                        <p>{{product.price}}€</p>
+                    </article>
+                {% endif %}
+
+            {% endfor %}
+        </section>
 	{% endfor %}
+
 {% endblock %}
 	

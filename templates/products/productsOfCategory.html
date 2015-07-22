@@ -1,9 +1,15 @@
 {% extends "layout.html" %}
 {% block body %}
-    <ul>Llista de productes de la Categoria: {{categorySelect.name}}
-    {% for product in products %}
-        <li>{{product.name}}</li>
-    {% endfor %}
+
+        <h1>Llista de productes de la Categoria: {{categorySelect.name}}</h1>
+        <section id="containerCol">
+            {% for product in products %}
+                <article class="products"><p>{{product.name}}</p>{% if product.img %} <img src='{{ product.img.url }}' width="150px" height="150px" alt="imatge del producte"/> {% endif %}
+                <p>{{product.price}}</p>
+                </article>
+            {% endfor %}
+        </section>
+
 {% endblock %}
-</ul>
+
 	
