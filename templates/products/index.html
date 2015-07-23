@@ -3,7 +3,7 @@
 {% block body %}
 {% load staticfiles %}
 	{% for category in categories %}
-         <h1 class="">{{category.name}}</h1>
+         <span class="category">{{category.name}}</span>
          <section id="containerCol">
          {% for product in products %}
 

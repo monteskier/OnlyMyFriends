@@ -106,8 +106,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'shop/static/uploads/')
-MEDIA_URL = 'http://localhost:8000/static/uploads/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'shop','static','uploads')
+MEDIA_URL = '/static/uploads/'
 
 STATICFILES_DIRS = (
     ('uploads'),(os.path.join(BASE_DIR, 'shop/')),

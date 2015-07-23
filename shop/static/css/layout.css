@@ -37,7 +37,7 @@
     border-right: none;
     padding: 0;
     color:white;
-    background-color:rgba(175, 189, 212,0.8);
+    background:rgb(29, 55, 80);
     text-decoration: none;
     display: block;
     text-align: center;
@@ -48,16 +48,21 @@
 }
 
 #navlist li a:hover {
-    color: #930;
-    background: #f5d7b4;
+    color: white;
+    font-weight:bold;
+    background:rgb(74, 124, 173);
 }
 #main{
   margin-top:3em;
   display:block;
   min-width:80%;
+  background-color:rgba(42, 77, 110,0.5);
+  width:80%;
   padding-bottom: 6rem;
   min-height: 100%;
   font-family: "Helvetica Neue", Arial, sans-serif;
+  margin-left:auto;
+  margin-right:auto;
 
  }
 #containerCol{
@@ -82,12 +87,12 @@
         margin-left:10px;
         -moz-transition:0.2s;
         -transition:0.2s;
-        background-color:rgb(59, 89, 152);
+        background-color:rgb(57, 99, 140);
 
     }#containerCol .products:hover{
 
-        background-color:rgba(175, 189, 212,0.5);
-        color:rgb(59, 89, 152);
+        background-color:rgb(74, 124, 173);
+        color:white;
         font-weight:bold;
     }#container .products{
         diaplay:inline;
@@ -105,16 +110,39 @@
 header{
 	display:block;
 	position:relative;
-	width:100%;
-	background:url('../uploads/images/layout/header.jpg');
+	width:80%;
+	background-color:rgb(17, 34, 50);
+	/*background:url('../uploads/images/layout/header.jpg');*/
 	height:50px;
+	margin-left:auto;
+    margin-right:auto;
 }
 footer{
-  position:relative;
+  position:absolute;
   right: 0;
   bottom: 0;
   left: 0;
+  width:80%;
   padding: 1rem;
   background-color: #efefef;
   text-align: center;
+  margin-left:auto;
+  margin-right:auto;
+}
+.category{
+	color:white;
+    font-size:1.5em;
+    display:block;
+    float:left;
+    padding-bottom:5px;
+    padding-top:5px;
+    margin-bottom:10px;
+    width:100%;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background:rgba(0,0,0,0.5);
+}
+body{
+	background:url('../uploads/images/layout/header.jpg');
+	background-repeat:no-repeat;
+	background-size:100%;
 }
