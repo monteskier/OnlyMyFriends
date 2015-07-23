@@ -4,7 +4,7 @@
         <span class="category">Llista de productes de la Categoria: {{categorySelect.name}}</span>
         <section id="containerCol">
             {% for product in products %}
-                <article class="products"><p>{{product.name}}</p>{% if product.img %} <img src='{{ product.img.url }}' width="150px" height="150px" alt="imatge del producte"/> {% endif %}
+                <article class="products"><a href="/shop/{{product.pk}}/detailProduct"><p>{{product.name}}</p>{% if product.img %} <img src='{{ product.img.url }}' width="150px" height="150px" alt="imatge del producte"/> {% endif %}</a>
                 <p>{{product.price}}</p>
                 </article>
             {% endfor %}

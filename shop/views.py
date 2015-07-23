@@ -15,7 +15,11 @@ def index(request):
     return render(request, 'products/index.html',{'products':products,'categories':category})
 
 def detailProduct(request, product_id):
-    return HttpResponse("Esta intentat veure les propietats del objecte %s" % product_id)
+    product = Product.objects.get(pk=product_id)
+    categoryAll = Category.objects.all()
+    categorySelect = Category.objects.get(pk=product.category.pk)
+    
+    return render(request,'products/detailProduct.html',{'categories':categoryAll, 'product':product,'categorySelect':categorySelect})
 
 def productsOfCategory(request, category_id):
     try:
