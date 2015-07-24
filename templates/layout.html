@@ -5,6 +5,7 @@
 <title>OnlyMyFriends</title>
 {% load staticfiles %}
 <link rel="stylesheet" type="text/css" href="{% static "css/layout.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "css/jssor.css" %}">
 </head>
 <header>
 	{% block header %}
@@ -12,21 +13,68 @@
 		<div id="navlist">
 		<ul>
 		{% for category in categories %}
-			<li> <a href="/shop/category/{{category.pk}}">{{category.name}}</a></li>
+			<li id="{{category.pk}}"> <!--<a href="/shop/category/{{category.pk}}">-->{{category.name}}<!--</a>--></li>
 		{% endfor %}
 		</ul>
 	</div>
 	{% endblock %}
 </header>
+{% block slider %}
+<div id="slider1_container" style="position:relative; top: 10px; left: 0px; width:600px;
+        height: 300px; overflow: hidden; display:block;">
+    
+        <!-- Loading Screen 
+        <div u="loading" style="position: absolute; top: 0px; left: 0px;">
+            <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
+                background-color: #000; top: 0px; left: 0px;width: 100%;height:100%;">
+            </div>
+            <div style="position: absolute; display: block; background: url(../img/loading.gif) no-repeat center center;
+                top: 0px; left: 0px;width: 100%;height:100%;">
+            </div>
+        </div>
+        
+		Slides Container -->
+        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width:600px; height: 300px; overflow: hidden;">
+        	{% for slider in sliders %}
+            <div>
+                <a u=image href="#"><img src="{{slider.img.url}}" /></a>
+                <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
+                {{slider.title}}
+                </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+        <div u="navigator" class="jssorb01" style="bottom: 16px; left: 10px;">
+            <!-- bullet navigator item prototype -->
+            <div u="prototype"></div>
+        </div>
+        <span u="arrowleft" class="jssora05l" style="top: 123px; left: 8px;"></span>
+        <!-- Arrow Right -->
+        <span u="arrowright" class="jssora05r" style="top: 123px; right: 8px;"></span>
+        <a style="display: none" href="http://www.jssor.com">Image Slider</a>
+		</div>
+{% endblock %}
 <body>
-	<div id="main">	
+<div id="main">
 		{% block body %}
+		<div id="prova">
+			
+		</div>
 		{% endblock %}
-	</div>
+</div>
+
 </body>
 <footer>
 	{% block footer%}
-		peu de pagina
+		<div id="prova"></div>
 	{% endblock %}
 </footer>
+<script src="{% static "js/jquery-1.9.1.min.js" %}"></script>
+<script src="{% static "js/jssor/jssor.js" %}"></script>
+<script src="{% static "js/jssor/jssor.slider.js" %}"></script>
+<script src="{% static "js/productes/getSubcategory.js" %}"></script>
+<script src="{% static "js/jssor/FuncioSliderLayout.js" %}"></script>
+
+
 </html>

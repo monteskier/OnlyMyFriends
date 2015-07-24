@@ -1,5 +1,4 @@
 {% extends "layout.html" %}
-
 {% block body %}
 {% load staticfiles %}
 	{% for category in categories %}
@@ -9,7 +8,7 @@
 
                 {% if product.category.name == category.name %}
 
-                    <article class="products"><a href="shop/{{product.pk}}/detailProduct"><p>{{ product.name }}</p>{% if product.img %} <img src='{{ product.img.url }}' width="150px" height="150px" alt="imatge del producte"/></a> {% endif %}
+                    <article class="products" id="{{category.pk}}"><a href="shop/{{product.pk}}/detailProduct"><p>{{ product.name }}</p>{% if product.img %} <img src='{{ product.img.url }}' width="150px" height="150px" alt="imatge del producte"/></a> {% endif %}
                         <p>{{product.price}}€</p>
                     </article>
                 {% endif %}
@@ -19,4 +18,14 @@
 	{% endfor %}
 
 {% endblock %}
-	
+<!--<script>
+	$(document).ready(function(e){
+		$(".products").click(function({
+			var id = $(this);
+			$.post( "shop/"+id+"/detailProduct", function( data ) {
+  			$(this).html( data );
+		});
+	}));
+});
+</script>
+-->

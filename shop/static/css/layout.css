@@ -33,11 +33,12 @@
 
 }
 
-#navlist li a {
+#navlist li{
     border-right: none;
     padding: 0;
     color:white;
     background:rgb(29, 55, 80);
+    margin-left:1em;
     text-decoration: none;
     display: block;
     text-align: center;
@@ -47,7 +48,7 @@
     -moz-transition:0.2s;
 }
 
-#navlist li a:hover {
+#navlist li:hover {
     color: white;
     font-weight:bold;
     background:rgb(74, 124, 173);
@@ -90,9 +91,12 @@ footer{
 }
 
 body{
-	background:url('../uploads/images/layout/header.jpg');
+	background-color:rgba(42, 79, 110,0.5);
 	background-repeat:no-repeat;
-	background-size:100%;
+	background-size:80%;
+	background-position: center;
+	
+
 }
 
 /**PRODUCTES*/

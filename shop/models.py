@@ -44,10 +44,11 @@ class Stock(models.Model):
     product = models.ForeignKey(Product)
     
 class SlideShow(models.Model):
-    category = models.ForeignKey(Category, null=True)
-    product = models.ForeignKey(Product, null=True)
+    category = models.ForeignKey(Category, null=True, blank=True, default = None)
+    product = models.ForeignKey(Product, null=True, blank=True, default = None)
     title = models.CharField(max_length=100)
     description = models.TextField(null=True)
+    img = models.ImageField(upload_to='images/slider/', blank=True, null=True)
 
 class Customers(models.Model):
     user = models.OneToOneField(User, primary_key=True, related_name='profile')

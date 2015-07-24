@@ -1,5 +1,8 @@
 {% extends "layout.html" %}
+{% block slider %}
+{% endblock %}
 {% block body %}
+
 <span class="category">{{categorySelect.name}}</span>
 	<article id="detailProduct">
 		<img src="{{product.img.url}}" alt="Imatge del producte" width="300px" height="300px">
@@ -9,4 +12,5 @@
 		<p>Preu:{{product.price}} €</p>
 			
 	</article>
+
 {% endblock %}
