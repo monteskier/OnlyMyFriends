@@ -197,11 +197,19 @@ body{
 	width:auto;
 	text-align:left;
 	height:auto;
+}ul.MenuChilds ul{
+	vertical-align:middle;
+	display:table-row;
 }
 ul.MenuChilds li{
 	background-color:rgb('115, 136, 168');
+	vertical-align: middle;
+	float:left;
+	display: table-cell;
+	padding:0px;
 }
 ul.MenuChilds li a{
+	display:block;
 	background-color:rgb('115, 136, 168');
 	color:white;
 	-webkit-transform:0.3s;

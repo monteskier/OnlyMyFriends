@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 from django.dispatch import receiver
 from django.contrib.auth.models import User
 import os
@@ -76,4 +77,10 @@ class History_Status(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)  
      
+"""ARA ELS FORMULARIS PER EL FRONTEND"""
 
+
+class CustomerForm(ModelForm):
+    class Meta:
+        model = Customers
+        fields = ['user','username','sournames','birthdate','email','telephone']
