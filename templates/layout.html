@@ -11,12 +11,12 @@
 	{% block header %}
         <div id="title"><a href="/">OnlyMyFriends</a></div>
 		<div id="navlist">
-		<ul>
-		{% for category in categories %}
-			<li id="{{category.pk}}"> <!--<a href="/shop/category/{{category.pk}}">-->{{category.name}}<!--</a>--></li>
-		{% endfor %}
-		</ul>
-	</div>
+			<ul class='MenuFather' id="MenuFather">
+			{% for category in categories %}
+				<li id="menu{{category.pk}}" value="{{category.pk}}"> <!--<a href="/shop/category/{{category.pk}}">-->{{category.name}}<!--</a>--></li>
+			{% endfor %}
+			</ul>
+		</div>
 	{% endblock %}
 </header>
 {% block slider %}

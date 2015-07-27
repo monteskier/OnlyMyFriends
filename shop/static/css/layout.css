@@ -50,7 +50,6 @@
 
 #navlist li:hover {
     color: white;
-    font-weight:bold;
     background:rgb(74, 124, 173);
 }
 #main{
@@ -91,7 +90,10 @@ footer{
 }
 
 body{
-	background-color:rgba(42, 79, 110,0.5);
+	/*background-color:rgba(42, 79, 110,0.5);*/
+	background-image:url('../uploads/images/layout/header.jpg');
+	background-repeat:no-repeat;
+	background-size:
 	background-repeat:no-repeat;
 	background-size:80%;
 	background-position: center;
@@ -179,3 +181,31 @@ body{
 			text-decoration:underline;
     		font-size:1.5em;
 		}
+		
+/*Estils del menu de categrories del nav del Header Principal*/
+.MenuFather{
+	
+}
+.MenuChilds{
+
+	display:block;
+	float:bottom;
+	position:absolute;
+	margin-top:10px;
+	color:white;
+	z-index:10;
+	width:auto;
+	text-align:left;
+	height:auto;
+}
+ul.MenuChilds li{
+	background-color:rgb('115, 136, 168');
+}
+ul.MenuChilds li a{
+	background-color:rgb('115, 136, 168');
+	color:white;
+	-webkit-transform:0.3s;
+	-moz-webkit-transform:0.3s;
+}.MenuChilds a:hover{
+	height:auto;
+}

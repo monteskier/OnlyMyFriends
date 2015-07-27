@@ -5,6 +5,7 @@ from .models import Category
 from .models import SlideShow
 from django.core import serializers
 from django.http import Http404
+import json
 # Create your views here.
 
 def index(request):
@@ -29,7 +30,7 @@ def categoryChilds(request, category_id):
     try:
         category = serializers.serialize('json', Category.objects.all().filter(category_father=category_id));
         print category;
-        return HttpResponse(categoryChilds);
+        return HttpResponse(category);
     except:
         return HttpResponse("sense fills");
         
@@ -37,8 +38,8 @@ def productsOfCategory(request, category_id):
     try:
         products = Product.objects.all().filter(published='published', category=category_id)
         categorySelect = Category.objects.get(pk=category_id)
-        categoryAll = Category.objects.all()
+        category = Category.objects.all().filter(category_father=None)
     except:
         raise Http404('Cap producte publicat dintre aquesta Categoria')
     
-    return render(request,'products/productsOfCategory.html',{'products':products, 'categorySelect':categorySelect, 'categories':categoryAll})
+    return render(request,'products/productsOfCategory.html',{'products':products, 'categorySelect':categorySelect, 'categories':category})
