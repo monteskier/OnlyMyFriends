@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" href="{% static "css/layout.css" %}">
 <link rel="stylesheet" type="text/css" href="{% static "css/jssor.css" %}">
 <link rel="stylesheet" type="text/css" href="{% static "css/customer.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "css/product.css" %}">
 </head>
 <header>
 	{% block header %}
@@ -20,7 +21,15 @@
 		</div>
 		<div id="register">
 		{% block register %}
-			<p><a href="/shop/register/">Register&nbsp;<t></t></a><a href="/shop/login/">Login</a></p>
+			<p>
+				{% if user.is_authenticated %}
+					<span class="logoCart">
+					</span>
+					Wellcome {{ user.username }}!<a href="/shop/logout/"> Logout</a>
+				{% else %}
+					<a href="/shop/register/">Register&nbsp;</a><a href="/shop/login/">Login</a>
+				{% endif %}
+			</p>
 		{% endblock %}
 		</div>
 	{% endblock %}
@@ -80,6 +89,7 @@
 <script src="{% static "js/jssor/jssor.js" %}"></script>
 <script src="{% static "js/jssor/jssor.slider.js" %}"></script>
 <script src="{% static "js/productes/getSubcategory.js" %}"></script>
+<script src="{% static "js/productes/addToShopingCart.js"%}"></script>
 <script src="{% static "js/jssor/FuncioSliderLayout.js" %}"></script>
 
 

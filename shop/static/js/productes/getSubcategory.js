@@ -1,9 +1,9 @@
 $(document).ready(function() {
 	
 	console.log("hem carregat jquery");
-	$('#navlist ul.MenuFather li').click(function(e){
-		e.stopPropagation();
-		$(".MenuChilds").hide(500);
+	$('#navlist ul.MenuFather li').click(function(event){
+		if (event.stopPropagation) event.stopPropagation(); else event.cancelBubble = true;
+		$(".MenuChilds").hide(200);
 		$(".MenuChilds").remove();
 	    var id = $(this).attr('id');
 	    var value = $(this).attr('value');
@@ -14,10 +14,10 @@ $(document).ready(function() {
 	        $("#"+id).append("<ul class='MenuChilds'>");
 	        $(".MenuChilds").hide();
 	     	$.each(data, function(fId, fVal){
-  				$('#'+id+' ul.MenuChilds').append("<li><a href='/shop/category/"+fVal.pk+"/'>"+fVal.fields.name+"</a></li>");
+  				$('#'+id+' .MenuChilds').append("<li><a href='/shop/category/"+fVal.pk+"/'>"+fVal.fields.name+"</a></li>");
 			});
-			$("#"+id+" ul.MenuChilds").append("</ul>");
-			$(".MenuChilds").show(500);
+			$("#"+id+" .MenuChilds").append("</ul>");
+			$(".MenuChilds").show(200);
 	     });
 	        
 	});

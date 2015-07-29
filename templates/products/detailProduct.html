@@ -10,7 +10,11 @@
 		<p>{{product.description}}</p>
 		<p>Talles disponibles:{{product.size}}</p>
 		<p>Preu:{{product.price}} €</p>
-			
 	</article>
-
+	<article class="addToCash">
+		{% if user.is_authenticated %}
+			Total:<input type="number" id="quantity" min="1" max="{{ stock.quantity }}">
+			<div id="addCart" class="addCart">Add to shopping cart!</div>
+		{% endif %}
+	</article>
 {% endblock %}

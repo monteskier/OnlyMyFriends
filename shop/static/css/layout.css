@@ -56,6 +56,7 @@
   margin-top:3em;
   display:block;
   min-width:80%;
+  min-height:100%;
   background-color:rgba(42, 77, 110,0.5);
   width:80%;
   padding-bottom: 6rem;
@@ -120,6 +121,7 @@ body{
     padding-bottom:5px;
     padding-top:5px;
     margin-bottom:10px;
+    margin-top:10px;
     width:100%;
     font-family: "Helvetica Neue", Arial, sans-serif;
     background:rgba(0,0,0,0.5);
@@ -142,16 +144,14 @@ body{
         display:block;
         width:150px;
         height:auto;
-        -webkit-transition:0.2s;
         margin-left:10px;
-        -moz-transition:0.2s;
-        -transition:0.2s;
+		-webkit-transform:0.3s;
+		-moz-webkit-transform:0.3s;
         background-color:rgb(57, 99, 140);
 	}#containerCol .products a{
 		color:white;
 	}
     }#containerCol .products:hover{
-
         background-color:rgb(74, 124, 173);
         color:white;
         font-weight:bold;
@@ -176,7 +176,7 @@ body{
         font:font-family: "Helvetica Neue", Arial, sans-serif;
         font-size:1em;
         text-align:center;
-        display:block;
+        display:inline;
         width:300px;
         height:auto;
         -webkit-transition:0.2s;
@@ -206,24 +206,17 @@ body{
 	margin-top:10px;
 	color:white;
 	z-index:10;
-	width:auto;
+	width:150px;
 	text-align:left;
 	height:auto;
-}ul.MenuChilds ul{
-	vertical-align:middle;
-	display:table-row;
-}
-ul.MenuChilds li{
-	background-color:rgb('115, 136, 168');
-	vertical-align: middle;
-	float:left;
-	display: table-cell;
-	padding:0px;
-}
+	}
+
 ul.MenuChilds li a{
 	display:block;
 	background-color:rgb('115, 136, 168');
 	color:white;
+	float:bottom;
+	width:200px;
 	-webkit-transform:0.3s;
 	-moz-webkit-transform:0.3s;
 }.MenuChilds a:hover{

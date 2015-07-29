@@ -1,0 +1,19 @@
+.addToCash{
+	color:white;
+	margin-left:10px;
+	padding:0.5em;
+	}
+#addCart{
+	background-color:rgba(73, 146, 115,0.5);
+	position:relative;
+	
+	display:inline;
+	background-size:auto;
+	padding:0.5em;
+	border:dashed;
+	-webkit-transition:0.2s;
+	-moz-transition:0.2s;
+}#addCart:hover{
+	background-color:rgba(213, 234, 225,0.5);
+	
+}

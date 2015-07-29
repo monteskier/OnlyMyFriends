@@ -44,6 +44,8 @@ class Product(models.Model):
 class Stock(models.Model):
     quantity = models.IntegerField(max_length=5)
     product = models.ForeignKey(Product)
+    def __unicode__(self):
+        return self.product.name 
     
 class SlideShow(models.Model):
     category = models.ForeignKey(Category, null=True, blank=True, default = None)
@@ -51,7 +53,7 @@ class SlideShow(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(null=True)
     img = models.ImageField(upload_to='images/slider/', blank=True, null=True)
-
+    
 class Customers(models.Model):
     user = models.OneToOneField(User, primary_key=True, related_name='profile')
     tagline = models.CharField(max_length=140, null=True)
@@ -66,7 +68,8 @@ class Customers(models.Model):
     def __unicode__(self):
         return self.user.username
 
-
+class Cart(models.Model):
+    data = {}
     
 class Sales(models.Model):
     customer = models.ForeignKey(Customers)

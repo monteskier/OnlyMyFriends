@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Product
+from .models import Product, Stock, Cart
 from .models import Category
 from .models import SlideShow
 from .models import CustomerForm, UserForm
 from django.core import serializers
 from django.http import Http404
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 import json
 # Create your views here.
 
@@ -59,13 +59,18 @@ def customerLogin(request):
             return HttpResponse("Invalid login details supplied.")
     else:
         return render(request,"customers/login.html",{})
-    
+
+def customerLogout(request):
+    logout(request)
+    return HttpResponseRedirect('/')
+
 def detailProduct(request, product_id):
     product = Product.objects.get(pk=product_id)
     categoryAll = Category.objects.all()
     categorySelect = Category.objects.get(pk=product.category.pk)
+    stock = Stock.objects.get(product=product.pk)
     
-    return render(request,'products/detailProduct.html',{'categories':categoryAll, 'product':product,'categorySelect':categorySelect})
+    return render(request,'products/detailProduct.html',{'categories':categoryAll, 'product':product,'categorySelect':categorySelect,'stock':stock})
 
 def categoryChilds(request, category_id):
     try:
@@ -84,3 +89,14 @@ def productsOfCategory(request, category_id):
         raise Http404('Cap producte publicat dintre aquesta Categoria')
     
     return render(request,'products/productsOfCategory.html',{'products':products, 'categorySelect':categorySelect, 'categories':category})
+
+"""SHOPINGCART"""
+def addToShopingCart(request, total, product_id):
+    if request.method=="POST":
+        try:
+            pass
+        except:
+            pass
+        
+    pass        
+        
