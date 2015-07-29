@@ -1,0 +1,21 @@
+#registerCont{
+	position:relative;
+	margin-left:auto;
+	margin-right:auto;
+	display:block;
+	
+	}.customerTab{
+		margin-top:1em;
+		font-size:1.5em;
+		color:white;
+	}.customerTab input{
+		font-size:1.2em;
+	}
+	.wellcome{
+		margin-left:auto;
+		margin-right:auto;
+		position:relative;
+		text-align:center;
+		color:white;
+		font-size:2em;
+	}

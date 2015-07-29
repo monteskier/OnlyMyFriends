@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block slider %}
+{% endblock %}
+{% block body %}
+	<section id="registerCont">
+	{% if registered %}
+		<article class="wellcome">Thaks for your subscription!</article>
+	{% else %}
+		<article class="wellcome">Register here!</article>
+			<form id="customer_form" method="post" action="/shop/register/" enctype="multipart/form-data">
+				{% csrf_token %}
+				<table class="customerTab" align="center">
+					{% for ufield in user_form %}
+						<tr><td>{{ufield.label}}</td><td>{{ufield}}</td></tr>
+					{% endfor %}
+					{% for cfield in customer_form %}
+						<tr><td>{{ cfield.label }}</td><td>{{ cfield }}</td></tr>
+					{% endfor %}
+					<tr>
+						<td><input type="submit" name="submit" value="Register" /></td>
+					</tr>
+				</table>			
+			</form>
+	 	</section>
+	{% endif %}
+	
+	
+{% endblock %}
+

@@ -6,6 +6,8 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^register/$', views.register, name='register'),
+    url(r'^login/$', views.customerLogin, name='customerLogin'),
     url(r'^(?P<product_id>[0-9]+)/detailProduct/$', views.detailProduct, name='detailProduct'),
     url(r'^category/+(?P<category_id>[0-9])+/$', views.productsOfCategory, name="productsOfCategory"),
     url(r'^categoryChilds/+(?P<category_id>[0-9])+/$', views.categoryChilds, name="categoryChilds"),

@@ -1,5 +1,6 @@
 from django.db import models
 from django.forms import ModelForm
+from django import forms
 from django.dispatch import receiver
 from django.contrib.auth.models import User
 import os
@@ -56,7 +57,7 @@ class Customers(models.Model):
     tagline = models.CharField(max_length=140, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    username = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     sournames = models.CharField(max_length=200)
     birthdate = models.DateField()
     email = models.EmailField()
@@ -79,8 +80,15 @@ class History_Status(models.Model):
      
 """ARA ELS FORMULARIS PER EL FRONTEND"""
 
+class UserForm(ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
+    class Meta:
+        model = User
+        fields = ('username','email','password')
+        username = forms.CharField(widget=forms.TextInput(attrs={'class' : 'fieldForm'}))
 
 class CustomerForm(ModelForm):
     class Meta:
         model = Customers
-        fields = ['user','username','sournames','birthdate','email','telephone']
+        fields = ['name','sournames','birthdate','email','telephone']
+

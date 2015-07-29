@@ -6,6 +6,7 @@
 {% load staticfiles %}
 <link rel="stylesheet" type="text/css" href="{% static "css/layout.css" %}">
 <link rel="stylesheet" type="text/css" href="{% static "css/jssor.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "css/customer.css" %}">
 </head>
 <header>
 	{% block header %}
@@ -16,6 +17,11 @@
 				<li id="menu{{category.pk}}" value="{{category.pk}}"> <!--<a href="/shop/category/{{category.pk}}">-->{{category.name}}<!--</a>--></li>
 			{% endfor %}
 			</ul>
+		</div>
+		<div id="register">
+		{% block register %}
+			<p><a href="/shop/register/">Register&nbsp;<t></t></a><a href="/shop/login/">Login</a></p>
+		{% endblock %}
 		</div>
 	{% endblock %}
 </header>
@@ -67,7 +73,7 @@
 </body>
 <footer>
 	{% block footer%}
-		<div id="prova"></div>
+		<div id="prova">Manresa CP:08294 telf:60454675 </div>
 	{% endblock %}
 </footer>
 <script src="{% static "js/jquery-1.9.1.min.js" %}"></script>
