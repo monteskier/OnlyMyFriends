@@ -69,11 +69,12 @@ class Customers(models.Model):
         return self.user.username
 
 class Cart(models.Model):
+    customer = models.ForeignKey(Customers, null=False, default=None)
     data = {}
     
 class Sales(models.Model):
-    customer = models.ForeignKey(Customers)
-    product = models.ForeignKey(Product)
+    customer = models.ForeignKey(Customers, null=False, default=None)
+    data = {}
     
 class History_Status(models.Model):
     sale = models.ForeignKey(Sales, unique=False)

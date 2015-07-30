@@ -23,8 +23,8 @@
 		{% block register %}
 			<p>
 				{% if user.is_authenticated %}
-					<span class="logoCart">
-					</span>
+					<article id="logoCart">
+					</article>
 					Wellcome {{ user.username }}!<a href="/shop/logout/"> Logout</a>
 				{% else %}
 					<a href="/shop/register/">Register&nbsp;</a><a href="/shop/login/">Login</a>
@@ -34,8 +34,11 @@
 		</div>
 	{% endblock %}
 </header>
-{% block slider %}
-<div id="slider1_container" style="position:relative; top: 10px; left: 0px; width:600px;
+
+<body>
+<div id="main">
+	{% block slider %}
+		<div id="slider1_container" style="position:relative; top: 10px; left: 0px; width:80%;display:inline;
         height: 300px; overflow: hidden; display:block;">
     
         <!-- Loading Screen 
@@ -49,29 +52,27 @@
         </div>
         
 		Slides Container -->
-        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width:600px; height: 300px; overflow: hidden;">
+        	<div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width:400px; height: 200px; overflow: hidden;">
         	{% for slider in sliders %}
-            <div>
-                <a u=image href="#"><img src="{{slider.img.url}}" /></a>
-                <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
+            	<div>
+                	<a u=image href="#"><img src="{{slider.img.url}}" /></a>
+                	<div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
                 {{slider.title}}
                 </div>
             </div>
             {% endfor %}
             
-        </div>
-        <div u="navigator" class="jssorb01" style="bottom: 16px; left: 10px;">
-            <!-- bullet navigator item prototype -->
-            <div u="prototype"></div>
-        </div>
-        <span u="arrowleft" class="jssora05l" style="top: 123px; left: 8px;"></span>
-        <!-- Arrow Right -->
-        <span u="arrowright" class="jssora05r" style="top: 123px; right: 8px;"></span>
-        <a style="display: none" href="http://www.jssor.com">Image Slider</a>
+	        </div>
+	        <div u="navigator" class="jssorb01" style="bottom: 16px; left: 10px;">
+	            <!-- bullet navigator item prototype -->
+	            <div u="prototype"></div>
+	        </div>
+	        <span u="arrowleft" class="jssora05l" style="top: 123px; left: 8px;"></span>
+	        <!-- Arrow Right -->
+	        <span u="arrowright" class="jssora05r" style="top: 123px; right: 8px;"></span>
+	        <a style="display: none" href="http://www.jssor.com">Image Slider</a>
 		</div>
-{% endblock %}
-<body>
-<div id="main">
+	{% endblock %}
 		{% block body %}
 		<div id="prova">
 			

@@ -91,9 +91,12 @@ def productsOfCategory(request, category_id):
     return render(request,'products/productsOfCategory.html',{'products':products, 'categorySelect':categorySelect, 'categories':category})
 
 """SHOPINGCART"""
-def addToShopingCart(request, total, product_id):
+def addToShopingCart(request):
     if request.method=="POST":
         try:
+            total = request["total"]
+            product_id = request["product_id"]
+            print(total, product_id)
             pass
         except:
             pass
