@@ -14,12 +14,13 @@ def index(request):
     try:
         products = Product.objects.all().filter(featured=True, published='published')
         category = Category.objects.all().filter(category_father=None)
+	categoryAll = Category.objects.all()
         sliders  = SlideShow.objects.all()
     except:
         raise Http404('Cap producte Disponible')
     
     
-    return render(request, 'products/index.html',{'products':products,'categories':category, 'sliders':sliders})
+    return render(request, 'products/index.html',{'products':products,'categories':category, 'sliders':sliders, 'categoryAll':categoryAll})
 
 def register(request):
     registered = False

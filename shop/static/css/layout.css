@@ -97,7 +97,7 @@ header{
 		background-size:25px 25px;
 	}
 footer{
-  position:absolute;
+  position:static;
   right: 0;
   bottom: 0;
   left: 0;
@@ -115,7 +115,7 @@ body{
 	background-repeat:no-repeat;
 	background-size:
 	background-repeat:no-repeat;
-	background-size:80%;
+	background-size:80% 100%;
 	background-position: center;
 	
 

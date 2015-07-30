@@ -1,12 +1,12 @@
 {% extends "layout.html" %}
 {% block body %}
 {% load staticfiles %}
-	{% for category in categories %}
+	{% for category in categoryAll %}
          <span class="category">{{category.name}} "featured products"...</span>
          <section id="containerCol">
          {% for product in products %}
 
-                {% if product.category.name == category.name %}
+                {% if product.category.pk == category.pk %}
 
                     <article class="products" id="{{category.pk}}"><a href="shop/{{product.pk}}/detailProduct"><p>{{ product.name }}</p>{% if product.img %} <img src='{{ product.img.url }}' width="150px" height="150px" alt="imatge del producte"/></a> {% endif %}
                         <p>{{product.price}}€</p>
