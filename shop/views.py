@@ -75,7 +75,7 @@ def detailProduct(request, product_id):
         return render(request,'products/detailProduct.html',{'categories':categoryAll, 'product':product,'categorySelect':categorySelect,'stock':100})
 def categoryChilds(request, category_id):
     try:
-        allCate = Categories.objects.all()
+        allCate = Category.objects.all()
         category = serializers.serialize('json', Category.objects.all().filter(category_father=category_id));
         print category;
         return HttpResponse(category);
@@ -100,16 +100,12 @@ def addToShopingCart(request, total, product_id):
         customer = Customers.objects.get(pk=user.pk)
         
         total = int(total)
-        if len(customer.cart.data)>0:
-            customer.cart.data[product_id] = customer.cart.data[product_id]+total
-            customer.save()
-            return HttpResponse(customer.cart.data[product_id])
-        else:
-            
-            print "no em trobat cap carret de aquest usuari"
-            customer.cart.data[product_id] = total
-            customer.save()
-            return HttpResponse(customer.cart.data[product_id])
+        
+                    
+        print "no em trobat cap carret de aquest usuari"
+        customer.cart.data[product_id] = total
+        customer.save()
+        return HttpResponse(customer.cart.data[product_id])
             
 def refreshShopingCart(request):
     user = request.user
