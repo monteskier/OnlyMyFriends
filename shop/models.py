@@ -54,6 +54,9 @@ class SlideShow(models.Model):
     description = models.TextField(null=True)
     img = models.ImageField(upload_to='images/slider/', blank=True, null=True)
     
+class Cart(models.Model):
+    data = {}
+    
 class Customers(models.Model):
     user = models.OneToOneField(User, primary_key=True, related_name='profile')
     tagline = models.CharField(max_length=140, null=True)
@@ -64,13 +67,10 @@ class Customers(models.Model):
     birthdate = models.DateField()
     email = models.EmailField()
     telephone = models.IntegerField(max_length=9)
+    cart = Cart()
     
     def __unicode__(self):
         return self.user.username
-
-class Cart(models.Model):
-    customer = models.ForeignKey(Customers, null=False, default=None)
-    data = {}
     
 class Sales(models.Model):
     customer = models.ForeignKey(Customers, null=False, default=None)

@@ -1,9 +1,11 @@
 $(document).ready(function() {
 	$(".addCart").click(function(event){
 		var total = $("#quantity").val();
+		var product_id = $("#product_id").val();
 		console.log(total);
-		$.post( "/shop/addToShopingCart/?total="+total+"&product_id="+1, function( data ) {
-  			$(".logoCart").empty();
+		$.get( "/shop/addToShopingCart/"+total+"/"+product_id, function( data ) {
+  			$(".itemsCart").empty();
+  			$(".itemsCart").append(data);
 		});	
 	});
 });

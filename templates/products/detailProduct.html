@@ -14,7 +14,9 @@
 	<article class="addToCash">
 		{% if user.is_authenticated %}
 			Total:<input type="number" id="quantity" min="1" max="{{ stock.quantity }}">
+			<input type="hidden" value="{{product.pk}}" id="product_id" />
 			<div id="addCart" class="addCart">Add to shopping cart!</div>
 		{% endif %}
 	</article>
 {% endblock %}
+	<script>refreishCart;</script>

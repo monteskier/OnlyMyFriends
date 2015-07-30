@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Product, Stock, Cart
+from .models import Product, Stock, Cart, Customers
 from .models import Category
 from .models import SlideShow
 from .models import CustomerForm, UserForm
@@ -74,6 +74,7 @@ def detailProduct(request, product_id):
 
 def categoryChilds(request, category_id):
     try:
+        allCate = Categories.objects.all()
         category = serializers.serialize('json', Category.objects.all().filter(category_father=category_id));
         print category;
         return HttpResponse(category);
@@ -91,15 +92,40 @@ def productsOfCategory(request, category_id):
     return render(request,'products/productsOfCategory.html',{'products':products, 'categorySelect':categorySelect, 'categories':category})
 
 """SHOPINGCART"""
-def addToShopingCart(request):
-    if request.method=="POST":
-        try:
-            total = request["total"]
-            product_id = request["product_id"]
-            print(total, product_id)
-            pass
-        except:
-            pass
+def addToShopingCart(request, total, product_id):
+    if request.method=="GET":
+        product_id = str(product_id)
+        user = request.user
+        customer = Customers.objects.get(pk=user.pk)
         
-    pass        
-        
+        total = int(total)
+        if len(customer.cart.data)>0:
+            customer.cart.data[product_id] = customer.cart.data[product_id]+total
+            customer.save()
+            return HttpResponse(customer.cart.data[product_id])
+        else:
+            
+            print "no em trobat cap carret de aquest usuari"
+            customer.cart.data[product_id] = total
+            customer.save()
+            return HttpResponse(customer.cart.data[product_id])
+            
+def refreshShopingCart(request):
+    user = request.user
+    total = 0
+    customer = Customers.objects.get(pk=user.pk)
+    try:
+        print "agafem be el usuari"
+        print customer.cart.data
+        for key in customer.cart.data:
+            total = total+customer.cart.data[key]
+            print customer.cart.data[key]
+        print customer.cart.data 
+        return HttpResponse(total)
+    except:
+        print customer.cart.data
+        return HttpResponse(0)
+    
+    
+   
+    
