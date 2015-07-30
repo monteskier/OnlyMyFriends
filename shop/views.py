@@ -68,10 +68,11 @@ def detailProduct(request, product_id):
     product = Product.objects.get(pk=product_id)
     categoryAll = Category.objects.all()
     categorySelect = Category.objects.get(pk=product.category.pk)
-    stock = Stock.objects.get(product=product.pk)
-    
-    return render(request,'products/detailProduct.html',{'categories':categoryAll, 'product':product,'categorySelect':categorySelect,'stock':stock})
-
+    try:
+        stock = Stock.objects.get(product=product.pk)
+        return render(request,'products/detailProduct.html',{'categories':categoryAll, 'product':product,'categorySelect':categorySelect,'stock':stock})
+    except:
+        return render(request,'products/detailProduct.html',{'categories':categoryAll, 'product':product,'categorySelect':categorySelect,'stock':100})
 def categoryChilds(request, category_id):
     try:
         allCate = Categories.objects.all()
