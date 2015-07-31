@@ -123,7 +123,13 @@ def refreshShopingCart(request):
     except:
         print customer.cart.data
         return HttpResponse(0)
-    
-    
-   
-    
+
+def shopingList(request):
+    user = request.user
+    products = Product.objects.all()
+    p=[]
+    for product in products:
+        if(product.pk in user.data.keys()):
+            p.append(product.pk)
+    products = Product.objects.filter(pk__in=p)
+    pass
