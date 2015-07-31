@@ -107,7 +107,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'shop','static','uploads')
-MEDIA_URL = '/static/uploads/'
+
+
+ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 STATICFILES_DIRS = (
     ('uploads'),(os.path.join(BASE_DIR, 'shop/')),
