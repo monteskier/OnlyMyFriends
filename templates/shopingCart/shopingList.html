@@ -2,8 +2,19 @@
 {% block slider %}
 {% endblock %}
 {% block body %}
-
-<span class="category">{{categorySelect.name}}</span>
-	<article id=""><!--Falta definir la classe -->
-	</article>
+	<section id="ListIntems">List of your ShopingCart</section>
+	<section id="containerRow">	
+	{% for product in products %}
+		<article class="productAvatar">
+			<a href="/shop/{{product.pk}}/detailProduct">
+				<p>{{ product.name }}</p>
+				{% if product.img %} 
+					<img src='{{ product.img.url }}' width="150px" height="150px" alt="imatge del producte"/> 
+				{% endif %}
+				</a>
+				<p>Delete</p>
+            	<p>{{product.price}}€</p>
+		</article>
+	</section>
+		{% endfor %}
 {% endblock %}

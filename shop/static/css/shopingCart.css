@@ -1,0 +1,49 @@
+.addToCash{
+	color:white;
+	margin-left:10px;
+	padding:0.5em;
+	}
+#addCart{
+	background-color:rgba(73, 146, 115,0.5);
+	position:relative;
+	
+	display:inline;
+	background-size:auto;
+	padding:0.5em;
+	border:dashed;
+	-webkit-transition:0.2s;
+	-moz-transition:0.2s;
+}#addCart:hover{
+	background-color:rgba(213, 234, 225,0.5);
+	
+}
+.itemsCart{
+	color:white;
+	background-color:red;
+	bottom:0px;
+}
+
+}#containerRow .productAvatar{
+        color:white;
+        font-weight:bold;
+        border-style:groove;
+        list-style-type: none;
+        font:font-family: "Helvetica Neue", Arial, sans-serif;
+        font-size:1em;
+        text-align:center;
+        display:block;
+        width:50px;
+        height:auto;
+        margin-left:10px;
+		-webkit-transition:0.3s;
+		-moz-webkit-transition:0.3s;
+        background-color:rgba(57, 99, 140,0.5);
+	}#containerCol .productavatar a{
+		color:white;
+    }#containerCol .productAvatar:hover{
+        background-color:rgba(74, 124, 173,0.5);
+        color:white;
+        font-weight:bold;
+    }#container .productAvatar{
+        diaplay:inline;
+        text-decoration:none;

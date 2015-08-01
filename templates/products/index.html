@@ -8,8 +8,9 @@
 
                 {% if product.category.pk == category.pk %}
 
-                    <article class="products" id="{{category.pk}}"><a href="shop/{{product.pk}}/detailProduct"><p>{{ product.name }}</p>{% if product.img %} <img src='{{ product.img.url }}' width="150px" height="150px" alt="imatge del producte"/></a> {% endif %}
+                    <article class="products" id="{{category.pk}}"><a href="shop/{{product.pk}}/detailProduct"><p>{{ product.name }}</p>{% if product.img %} <img src='{{ product.img.url }}' width="150px" height="150px" alt="imatge del producte"/>{% endif %}
                         <p>{{product.price}}€</p>
+                        </a>
                     </article>
                 {% endif %}
 

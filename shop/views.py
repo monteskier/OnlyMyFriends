@@ -126,10 +126,20 @@ def refreshShopingCart(request):
 
 def shopingList(request):
     user = request.user
+    user = Customers.objects.get(pk=user.pk)
     products = Product.objects.all()
-    p=[]
+    pro = []
+    p={}
+    list=[]
+    print "veixam"
+    print user.cart.data
     for product in products:
-        if(product.pk in user.data.keys()):
-            p.append(product.pk)
-    products = Product.objects.filter(pk__in=p)
-    pass
+        if(str(product.pk) in user.cart.data.keys()):
+            pro.append(product.pk)
+            print "coincidencia"
+            p["pk"]=product.pk
+            p["total"]=user.cart.data[str(product.pk)]
+            p['price'] =float(user.cart.data[str(product.pk)]*product.price)
+            list.append(p)
+    products = Product.objects.filter(pk__in=pro)
+    return render(request, "shopingCart/shopingList.html",{"products":products, "list":list})

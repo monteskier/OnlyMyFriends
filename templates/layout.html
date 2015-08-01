@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="{% static "css/layout.css" %}">
 <link rel="stylesheet" type="text/css" href="{% static "css/jssor.css" %}">
 <link rel="stylesheet" type="text/css" href="{% static "css/customer.css" %}">
-<link rel="stylesheet" type="text/css" href="{% static "css/product.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "css/shopingCart.css" %}">
 </head>
 <header>
 	{% block header %}
@@ -23,8 +23,10 @@
 		{% block register %}
 			<p>
 				{% if user.is_authenticated %}
-					<article id="logoCart"><span class="itemsCart"> </span>
-					</article>
+					<a href="/shop/shopingList/">
+						<article id="logoCart"><span class="itemsCart"> </span>
+						</article>
+					</a>
 					Wellcome {{ user.username }}!<a href="/shop/logout/"> Logout</a>
 				{% else %}
 					<a href="/shop/register/">Register&nbsp;</a><a href="/shop/login/">Login</a>
