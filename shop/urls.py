@@ -15,5 +15,6 @@ urlpatterns = [
     url(r'^addToShopingCart/+(?P<total>[0-9])/(?P<product_id>[0-9])+/$', views.addToShopingCart, name="addToShopingCart"),
     url(r'^refreshShopingCart/$', views.refreshShopingCart, name="refreshShopingCart"),
     url(r'^shopingList/$', views.shopingList, name="shopingList"),
+    url(r'^shopingList/+(?P<product_id>[0-9])+/$', views.shopingDelItem, name="shopingDelItem"),
 
 ]

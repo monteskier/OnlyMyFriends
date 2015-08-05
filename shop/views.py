@@ -93,21 +93,7 @@ def productsOfCategory(request, category_id):
     
     return render(request,'products/productsOfCategory.html',{'products':products, 'categorySelect':categorySelect, 'categories':category})
 
-"""SHOPINGCART"""
-def addToShopingCart(request, total, product_id):
-    if request.method=="GET":
-        product_id = str(product_id)
-        user = request.user
-        customer = Customers.objects.get(pk=user.pk)
-        
-        total = int(total)
-        
-                    
-        print "no em trobat cap carret de aquest usuari"
-        customer.cart.data[product_id] = total
-        customer.save()
-        return HttpResponse(customer.cart.data[product_id])
-            
+"""***************************SHOPINGCART********************************************"""
 def refreshShopingCart(request):
     user = request.user
     total = 0
@@ -124,22 +110,31 @@ def refreshShopingCart(request):
         print customer.cart.data
         return HttpResponse(0)
 
+def addToShopingCart(request, total, product_id):
+    product_id = str(product_id)
+    user = request.user
+    customer = Customers.objects.get(pk=user.pk)
+    total = int(total)
+    customer.cart.data[product_id] = total
+    customer.save()
+    return refreshShopingCart(request)
+    """return HttpResponse(customer.cart.data[product_id])"""
+def delToShopingCart(request, total, product_id):
+    if request.method=="GET":
+        product_id=str(product_id)
+        user = request.user
+        user.cart.data.pop(product_id, None)
+        refreshShopingCart()
+        
+
 def shopingList(request):
     user = request.user
     user = Customers.objects.get(pk=user.pk)
-    products = Product.objects.all()
-    pro = []
-    p={}
-    list=[]
-    print "veixam"
-    print user.cart.data
-    for product in products:
-        if(str(product.pk) in user.cart.data.keys()):
-            pro.append(product.pk)
-            print "coincidencia"
-            p["pk"]=product.pk
-            p["total"]=user.cart.data[str(product.pk)]
-            p['price'] =float(user.cart.data[str(product.pk)]*product.price)
-            list.append(p)
-    products = Product.objects.filter(pk__in=pro)
-    return render(request, "shopingCart/shopingList.html",{"products":products, "list":list})
+    return render(request, "shopingCart/shopingList.html",user.calculatePrice())
+
+def shopingDelItem(request, product_id):
+    user = request.user
+    customer =Customers.objects.get(pk=user.pk)
+    customer.cart.data.pop(str(product_id), None) 
+    return shopingList(request)
+    

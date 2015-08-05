@@ -2,19 +2,47 @@
 {% block slider %}
 {% endblock %}
 {% block body %}
-	<section id="ListIntems">List of your ShopingCart</section>
-	<section id="containerRow">	
+{% load staticfiles %}
+	<section id="ListIntems">
+		<h1>List of your ShopingCart</h1>
+		<span class="updateItem">Actualitzar</span>
+		</section>
+		
 	{% for product in products %}
-		<article class="productAvatar">
-			<a href="/shop/{{product.pk}}/detailProduct">
-				<p>{{ product.name }}</p>
+		<section id="containerRow">
+				<a href="/shop/{{product.pk}}/detailProduct">
+				<p>Nom del article:{{ product.name }}</p>
+				<article id="productAvatar">
+				
 				{% if product.img %} 
 					<img src='{{ product.img.url }}' width="150px" height="150px" alt="imatge del producte"/> 
 				{% endif %}
 				</a>
-				<p>Delete</p>
-            	<p>{{product.price}}€</p>
-		</article>
+				<a href="/shop/shopingList/{{product.pk}}"><p class="delItem">Treure</p></a>
+				<p>Preu per unitat:{{product.price}}€ *
+				   Total unitats:<input onclick="update_shoping_list({{product.pk}},this)" type="number" id="q{{product.pk}}" value="" size="5"> = 
+				   <span id="p{{product.pk}}"> </span>
+				</p>
+        	</article>
+            	
+		
 	</section>
-		{% endfor %}
+	{% endfor %}
+	<section id="goBuy"><input type="button" value="Go to the pay!" /></section>
+	<script src="{% static "js/jquery-1.9.1.min.js" %}"></script>
+	<script src="{% static "js/shopingCart/updateShopingList.js" %}"></script>
+	<script>
+	$(document).ready(function(){
+		var list ={{list|safe}};
+		var total = 0;
+		console.log(list);
+		$.each(list,function(key,val){
+			console.log(val.pk);
+			$("#q"+val.pk).val(val.fields.total);
+			$("#p"+val.pk).html(val.fields.price+"€");
+			total = total+val.fields.price;
+		});
+		$("#goBuy").prepend("Total a pagar = "+total+"€ ");
+	});
+	</script>
 {% endblock %}

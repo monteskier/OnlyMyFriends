@@ -23,7 +23,7 @@
 	bottom:0px;
 }
 
-}#containerRow .productAvatar{
+	}#productAvatar{
         color:white;
         font-weight:bold;
         border-style:groove;
@@ -31,19 +31,47 @@
         font:font-family: "Helvetica Neue", Arial, sans-serif;
         font-size:1em;
         text-align:center;
-        display:block;
-        width:50px;
+        display:flex;
+    	width:auto;
+    	flex-direction:columns;
+    	flex-wrap:wrap;
+    	justify-content:flex-start;
         height:auto;
         margin-left:10px;
 		-webkit-transition:0.3s;
 		-moz-webkit-transition:0.3s;
         background-color:rgba(57, 99, 140,0.5);
-	}#containerCol .productavatar a{
+	}#containerRowa #productAvatar a{
 		color:white;
-    }#containerCol .productAvatar:hover{
+    }#containerRowa .productAvatar:hover{
         background-color:rgba(74, 124, 173,0.5);
         color:white;
         font-weight:bold;
-    }#container .productAvatar{
-        diaplay:inline;
-        text-decoration:none;
+}
+p.delItem{
+	background-color:rgba(225, 234, 213,0.5);
+	display:block;
+	background-size:auto;
+	padding:0.5em;
+	border:dashed;
+	-webkit-transition:0.2s;
+	-moz-transition:0.2s;	
+}p.delItem:hover{
+	background-color:rgba(255, 255, 225,0.5);
+
+}#goBuy{
+	font-size:1,8em;
+	float:center;
+	background-color:rgba(255, 255, 255, 0.5);
+}#goBuy input{
+	padding:0.5em;
+	border:solid;
+	color:white;
+	background-color:rgba(77, 100, 141,0.5);
+	float:center;
+	font-size:1,8em;
+	-webkit-transition:0.2s;
+	-moz-transition:0.2s;
+}#goBuy input:hover{
+	background-color:rgba(255, 255, 255,0.5);
+}

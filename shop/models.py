@@ -3,7 +3,8 @@ from django.forms import ModelForm
 from django import forms
 from django.dispatch import receiver
 from django.contrib.auth.models import User
-import os
+import os, json
+from django.core import serializers
 from os.path import join
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -19,7 +20,7 @@ class Category(models.Model):
     category_father = models.ForeignKey('self', null=True, blank=True, default = None)
     video = models.ForeignKey(Video, null=True, blank=True, default = None)
     name = models.CharField(max_length=150)
-    img = models.ImageField(upload_to='/uploads/images/categories/<category_id>/', blank=True, null=True)
+    img = models.ImageField(upload_to='images/categories/<category_id>/', blank=True, null=True)
     def __unicode__(self):
         return self.name
 
@@ -72,6 +73,29 @@ class Customers(models.Model):
     def __unicode__(self):
         return self.user.username
     
+    def calculatePrice(self):
+        
+        products = Product.objects.all()
+        pro = []
+        p={}
+        x={}
+        list=[]
+        print "veixam"
+        print self.cart.data
+        for product in products:
+            if(str(product.pk) in self.cart.data.keys()):
+                pro.append(product.pk)
+                print "coincidencia"
+                p['pk']=product.pk
+                x["total"]=self.cart.data[str(product.pk)]
+                x["price"] =float(self.cart.data[str(product.pk)]*product.price)
+                p['fields']=x
+                list.append(p)
+                p={}
+        products = Product.objects.filter(pk__in=pro)
+        print json.dumps(list)
+        return {"products":products, "list":json.dumps(list)}
+
 class Sales(models.Model):
     customer = models.ForeignKey(Customers, null=False, default=None)
     data = {}

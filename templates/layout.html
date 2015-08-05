@@ -89,14 +89,15 @@
 	{% endblock %}
 </footer>
 <script src="{% static "js/jquery-1.9.1.min.js" %}"></script>
-<script src="{% static "js/jssor/jssor.js" %}"></script>
-<script src="{% static "js/jssor/jssor.slider.js" %}"></script>
+{% if request.path == '/' %}
+	<script src="{% static "js/jssor/jssor.js" %}"></script>
+	<script src="{% static "js/jssor/jssor.slider.js" %}"></script>
+	<script src="{% static "js/jssor/FuncioSliderLayout.js" %}"></script>
+{% endif %}
 <script src="{% static "js/productes/getSubcategory.js" %}"></script>
 <script src="{% static "js/productes/addToShopingCart.js"%}"></script>
-<script src="{% static "js/jssor/FuncioSliderLayout.js" %}"></script>
+
 {% if user.is_authenticated %}
 	<script src="{% static "js/shopingCart/cartLogoRefresh.js" %}"></script>
 {% endif %}
-
-
 </html>
