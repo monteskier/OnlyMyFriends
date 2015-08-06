@@ -15,6 +15,18 @@
 		{% if user.is_authenticated %}
 			Total:<input type="number" id="quantity" min="1" max="{{ stock.quantity }}">
 			<input type="hidden" value="{{product.pk}}" id="product_id" />
+			Size:
+			<select id="size">
+				{% for size in sizes %}
+					<option value="{{size}}">{{size}}</option>
+				{% endfor %}
+			</select>
+			Color:
+			<select>
+				{% for color in colors %}
+					<option value="{{color}}">{{color}}</option>
+				{% endfor %}
+			</select id="color">
 			<div id="addCart" class="addCart">Add to shopping cart!</div>
 		{% endif %}
 	</article>

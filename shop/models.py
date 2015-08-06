@@ -34,13 +34,28 @@ class Product(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
     color = models.CharField(max_length=50)
-    size = models.CharField(max_length = 10, choices = SIZE_OPTIONS) 
+    size = models.CharField(max_length = 10) 
     status = models.CharField(max_length=50, choices=STATUS_CHOICES)
     category = models.ForeignKey(Category)
     img = models.ImageField(upload_to='images/products/', blank=True, null=True)
     pub_date = models.DateTimeField(auto_now_add=True, blank=True)
+    
     def __unicode__(self):
         return self.name
+    
+    def getSizes(self):
+        array = []
+        sizes = self.size.split(";")
+        for size in sizes:
+            array.append(size)
+        return array
+    
+    def getColors(self):
+        array =[]
+        colors = self.color.split(";")
+        for color in colors:
+            array.append(color)
+        return array
 
 class Stock(models.Model):
     quantity = models.IntegerField(max_length=5)
