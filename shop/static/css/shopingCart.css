@@ -31,7 +31,25 @@
         font:font-family: "Helvetica Neue", Arial, sans-serif;
         font-size:1em;
         text-align:center;
-        display:flex;
+        display:block;
+    	width:auto;
+    	flex-direction:columns;
+    	flex-wrap:wrap;
+    	justify-content:flex-start;
+        height:auto;
+        margin-left:10px;
+		-webkit-transition:0.3s;
+		-moz-webkit-transition:0.3s;
+        background-color:rgba(57, 99, 140,0.5);
+	}#description{
+ 		color:white;
+        font-weight:bold;
+        border-style:groove;
+        list-style-type: none;
+        font:font-family: "Helvetica Neue", Arial, sans-serif;
+        font-size:1em;
+        text-align:center;
+        display:block;
     	width:auto;
     	flex-direction:columns;
     	flex-wrap:wrap;

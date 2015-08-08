@@ -5,32 +5,40 @@
 {% load staticfiles %}
 	<section id="ListIntems">
 		<h1>List of your ShopingCart</h1>
-		<span class="updateItem">Actualitzar</span>
 		</section>
 		
-	{% for product in products %}
+	{% for cart in carts %}
 		<section id="containerRow">
-				<a href="/shop/{{product.pk}}/detailProduct">
-				<p>Nom del article:{{ product.name }}</p>
+			<section id="containerCol">
 				<article id="productAvatar">
-				
-				{% if product.img %} 
-					<img src='{{ product.img.url }}' width="150px" height="150px" alt="imatge del producte"/> 
-				{% endif %}
-				</a>
-				<a href="/shop/shopingList/{{product.pk}}"><p class="delItem">Treure</p></a>
-				<p>Preu per unitat:{{product.price}}€ *
-				   Total unitats:<input onclick="update_shoping_list({{product.pk}},this)" type="number" id="q{{product.pk}}" value="" size="5"> = 
-				   <span id="p{{product.pk}}"> </span>
-				</p>
-        	</article>
+					<a href="/shop/shopingDelItem/{{cart.pk}}"><p class="delItem">Treure</p></a>
+					<a href="/shop/{{cart.product.pk}}/detailProduct">
+					
+						{% if cart.product.img %} 
+							<img src='{{ cart.product.img.url }}' width="150px" height="150px" alt="imatge del producte"/> 
+						{% endif %}
+					
+					</a>
+				</article>
+				<article id="description">
+					<p><h1>Nom del article:{{ cart.product.name }}</h1></p>
+					<p id="color">color:{{cart.color}}</p>
+					<p id="size">size:{{cart.size}}</p>
+					
+					<p>Preu per unitat:{{cart.product.price}}€ *
+					   Total unitats:<input onclick="update_shoping_list({{cart.product.pk}},{{cart.total}},'{{cart.size}}','{{cart.color}}',this)" type="number" id="q{{cart.product.pk}}" value="{{cart.total}}" size="5"> = 
+					   <span id="p{{cart.product.pk}}">{{cart.price}}€</span>
+					</p>
+        		</article>
             	
-		
+		</section>
 	</section>
 	{% endfor %}
+	<section><a href="/shop/delAllListShoping">Delete All</a></section>
 	<section id="goBuy"><input type="button" value="Go to the pay!" /></section>
 	<script src="{% static "js/jquery-1.9.1.min.js" %}"></script>
 	<script src="{% static "js/shopingCart/updateShopingList.js" %}"></script>
+	<!--
 	<script>
 	$(document).ready(function(){
 		var list ={{list|safe}};
@@ -45,4 +53,5 @@
 		$("#goBuy").prepend("Total a pagar = "+total+"€ ");
 	});
 	</script>
+	-->
 {% endblock %}

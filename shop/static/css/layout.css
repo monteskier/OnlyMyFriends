@@ -135,7 +135,10 @@ body{
     width:100%;
     font-family: "Helvetica Neue", Arial, sans-serif;
     background:rgba(0,0,0,0.5);
-}
+	}.category a{
+		color:white;
+		text-decoration:none;
+	}
 #containerCol{
     display:flex;
     width:100%;

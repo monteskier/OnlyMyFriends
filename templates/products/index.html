@@ -2,7 +2,7 @@
 {% block body %}
 {% load staticfiles %}
 	{% for category in categoryAll %}
-         <span class="category">{{category.name}} "featured products"...</span>
+         <span class="category"><a href='/shop/category/{{category.pk}}/'>{{category.name}} "featured products"...</a></span>
          <section id="containerCol">
          {% for product in products %}
 

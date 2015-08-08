@@ -69,10 +69,7 @@ class SlideShow(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(null=True)
     img = models.ImageField(upload_to='images/slider/', blank=True, null=True)
-    
-class Cart(models.Model):
-    data = {}
-    
+
 class Customers(models.Model):
     user = models.OneToOneField(User, primary_key=True, related_name='profile')
     tagline = models.CharField(max_length=140, null=True)
@@ -83,11 +80,12 @@ class Customers(models.Model):
     birthdate = models.DateField()
     email = models.EmailField()
     telephone = models.IntegerField(max_length=9)
-    cart = Cart()
     
     def __unicode__(self):
         return self.user.username
+
     
+    """
     def calculatePrice(self):
         
         products = Product.objects.all()
@@ -110,7 +108,30 @@ class Customers(models.Model):
         products = Product.objects.filter(pk__in=pro)
         print json.dumps(list)
         return {"products":products, "list":json.dumps(list)}
-
+    """
+class Cart(models.Model):
+    data = {}
+    product = models.ForeignKey(Product, default=None)
+    customer = models.ForeignKey(Customers, default=None)
+    price = models.DecimalField(max_digits=6, decimal_places=2, default=None)
+    total = models.IntegerField(default=None)
+    size = models.CharField(max_length=10, default=None)
+    color = models.CharField(max_length=20, default=None)
+    
+    def setCart(self, product, customer, total, color, size):
+        self.product = product
+        self.customer = customer
+        print "Intentem fer algo" 
+        self.color = color
+        self.size = size
+        self.total = total
+        self.calculatePrice()
+        
+    def calculatePrice(self):
+        print "Calculem el preu"
+        self.price = float(self.product.price*self.total)
+        print "calculem el preu",self.price
+        
 class Sales(models.Model):
     customer = models.ForeignKey(Customers, null=False, default=None)
     data = {}

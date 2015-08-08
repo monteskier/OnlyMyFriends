@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Product, Stock, Cart, Customers
 from .models import Category
@@ -105,41 +106,43 @@ def refreshShopingCart(request):
     customer = Customers.objects.get(pk=user.pk)
     try:
         print "agafem be el usuari"
-        print customer.cart.data
-        for key in customer.cart.data:
-            total = total+customer.cart.data[key]
-            print customer.cart.data[key]
-        print customer.cart.data 
+        carts = Cart.objects.all().filter(customer=user.pk)
+        for cart in carts:
+            total = cart.total+total
         return HttpResponse(total)
     except:
         print customer.cart.data
         return HttpResponse(0)
 
-def addToShopingCart(request, total, product_id):
-    product_id = str(product_id)
+def addToShopingCart(request, total, product_id, color, size):
     user = request.user
     customer = Customers.objects.get(pk=user.pk)
+    product = Product.objects.get(pk=product_id)
     total = int(total)
-    customer.cart.data[product_id] = total
-    customer.save()
+    try:
+        cart = Cart.objects.get(product = product, color = color, size = size, customer=customer)
+        cart.setCart(product, customer, total, color, size)
+    except:
+        cart = Cart()
+        cart.setCart(product, customer, total, color, size)
+    cart.save()
     return refreshShopingCart(request)
-    """return HttpResponse(customer.cart.data[product_id])"""
-def delToShopingCart(request, total, product_id):
-    if request.method=="GET":
-        product_id=str(product_id)
-        user = request.user
-        user.cart.data.pop(product_id, None)
-        refreshShopingCart()
-        
-
+    
 def shopingList(request):
     user = request.user
     user = Customers.objects.get(pk=user.pk)
-    return render(request, "shopingCart/shopingList.html",user.calculatePrice())
-
-def shopingDelItem(request, product_id):
-    user = request.user
-    customer =Customers.objects.get(pk=user.pk)
-    customer.cart.data.pop(str(product_id), None) 
-    return shopingList(request)
+    carts = Cart.objects.all().filter(customer=user.pk)
     
+    return render(request, "shopingCart/shopingList.html",{"carts":carts})
+
+def shopingDelItem(request, cart_id):
+    print cart_id
+    cart = Cart.objects.get(pk=cart_id)
+    print cart_id
+    cart.delete()
+    return shopingList(request) 
+    
+def delAllListShoping(request):
+    customer = Customers.objects.get(pk=request.user.pk)
+    cart = Cart.objects.all().filter(customer=customer.pk).delete()
+    return shopingList(request) 
