@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^shopingList/$', views.shopingList, name="shopingList"),
     url(r'^shopingDelItem/(?P<cart_id>[0-9]{1,9999})+/$', views.shopingDelItem, name="shopingDelItem"),
     url(r'^delAllListShoping/+$', views.delAllListShoping, name="delAllListShoping"),
+    url(r'^pdfView/+$', views.pdfView, name="pdfView"),
 
 
 ]

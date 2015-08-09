@@ -66,7 +66,7 @@
         color:white;
         font-weight:bold;
 }
-p.delItem{
+.delItem{
 	background-color:rgba(225, 234, 213,0.5);
 	display:block;
 	background-size:auto;
@@ -74,19 +74,34 @@ p.delItem{
 	border:dashed;
 	-webkit-transition:0.2s;
 	-moz-transition:0.2s;	
-}p.delItem:hover{
+}.delItem:hover{
 	background-color:rgba(255, 255, 225,0.5);
-
+}.globalOpt{
+	font-size:1,8em;
+	float:left;
+	background-color:rgba(255, 255, 255, 0.5)
+}.globalOpt input{
+	padding:0.5em;
+	border:solid;
+	color:white;
+	float:left;
+	background-color:rgba(77, 100, 141,0.5);
+	font-size:1,8em;
+	-webkit-transition:0.2s;
+	-moz-transition:0.2s;
+}.globalOpt input:hover{
+	background-color:rgba(255, 255, 255,0.5);
+}
 }#goBuy{
 	font-size:1,8em;
-	float:center;
+	float:left;
 	background-color:rgba(255, 255, 255, 0.5);
 }#goBuy input{
 	padding:0.5em;
 	border:solid;
 	color:white;
 	background-color:rgba(77, 100, 141,0.5);
-	float:center;
+	float:left;
 	font-size:1,8em;
 	-webkit-transition:0.2s;
 	-moz-transition:0.2s;

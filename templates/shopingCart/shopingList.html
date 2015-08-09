@@ -34,10 +34,12 @@
 		</section>
 	</section>
 	{% endfor %}
-	<section><a href="/shop/delAllListShoping">Delete All</a></section>
-	<section id="goBuy"><input type="button" value="Go to the pay!" /></section>
-	<script src="{% static "js/jquery-1.9.1.min.js" %}"></script>
-	<script src="{% static "js/shopingCart/updateShopingList.js" %}"></script>
+		<article class="globalOpt"><a href="/shop/delAllListShoping"><input type="button" value="Delete All" /></a></article>
+		<article class="globalOpt"><a href="/shop/pdfView/"><input type="button" value="Get receipt on PDF" /></a></article>
+		<section id="goBuy"><input type="button" value="Go to the pay!" /></section>
+		<script src="{% static "js/jquery-1.9.1.min.js" %}"></script>
+		<script src="{% static "js/shopingCart/updateShopingList.js" %}"></script>
+
 	<!--
 	<script>
 	$(document).ready(function(){

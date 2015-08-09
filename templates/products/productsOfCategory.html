@@ -5,6 +5,12 @@
 
         <span class="category">Llista de productes de la Categoria: {{categorySelect.name}}</span>
         <section id="containerCol">
+        {% if categorySelect.video %}
+        	<video width="300" height="150" controls>  
+				<source src="{{CategorySelect.video.url}}" type="video/mp4"></source>  
+				 <!-- The fallback in case the browser doesn't recognize the HTML5 video tag -->  	  
+			</video>
+        {% endif %}
             {% for product in products %}
                 <article class="products"><a href="/shop/{{product.pk}}/detailProduct"><p>{{product.name}}</p>{% if product.img %} <img src='{{ product.img.url }}' width="150px" height="150px" alt="imatge del producte"/> {% endif %}</a>
                 <p>{{product.price}}</p>

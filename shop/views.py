@@ -9,7 +9,23 @@ from django.core import serializers
 from django.http import Http404
 from django.contrib.auth import authenticate, login, logout
 import json
+import cStringIO as StringIO
+import ho.pisa as pisa
+from django.template.loader import get_template
+from django.template import Context
+from cgi import escape
+
 # Create your views here.
+def render_to_pdf(template_src, context_dict):
+    template = get_template(template_src)
+    context = Context(context_dict)
+    html  = template.render(context)
+    result = StringIO.StringIO()
+
+    pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("ISO-8859-1")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), content_type='application/pdf')
+    return HttpResponse('We had some errors<pre>%s</pre>' % escape(html))
 
 def index(request):
     try:
@@ -100,6 +116,18 @@ def productsOfCategory(request, category_id):
     return render(request,'products/productsOfCategory.html',{'products':products, 'categorySelect':categorySelect, 'categories':category})
 
 """***************************SHOPINGCART********************************************"""
+def pdfView(request):
+    user = request.user
+    user = Customers.objects.get(pk=user.pk)
+    results = Cart.objects.all().filter(customer=user.pk)
+    
+    return render_to_pdf(
+            'shopingCart/pdfReceipt.html',
+            {
+                'pagesize':'A4',
+                'mylist': results,
+            }
+        )
 def refreshShopingCart(request):
     user = request.user
     total = 0
